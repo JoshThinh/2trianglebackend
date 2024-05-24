@@ -58,9 +58,9 @@ class ClassesAPI:
 
         # @token_required
         def get(self): # Read Method
-            CharClasses = Classes.query.all()    # read/extract all users from database
-            json_ready = [CharClass.read() for CharClass in CharClasses]  # prepare output in json
-            return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
+            CharClasses = Classes.query.all()
+            json_ready = [CharClass.read() for CharClass in CharClasses]
+            return jsonify(json_ready)
     
     # class _Security(Resource):
     #     def post(self):

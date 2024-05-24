@@ -57,18 +57,16 @@ class CurrentCharAPI:
             json_ready = [CurrentCharacter.read() for CurrentCharacter in CurrentCharacter]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
 
+
         def put(self):
-            body = request.get_json() # get the body of the request
+            body = request.get_json()
             classname = body.get('classname')
-            health = body.get('health') # get the UID (Know what to reference)
-            attack = body.get('attack') # get name (to change)
-            range = body.get('range') # get name (to change)
-            movement = body.get('movement') # get name (to change)
-            CurrentCharacter = CurrentChar.query.all() # get users
-            # for CurrentCharacter in CurrentCharacter:
-                # if CurrentCharacter.classname == classname: # find user with matching uid
-            # check length of current character todo
-            CurrentCharacter[0].update(classname,health,attack,range==True,movement==True) # update info
+            health = body.get('health')
+            attack = body.get('attack')
+            range = body.get('range')
+            movement = body.get('movement')
+            CurrentCharacter = CurrentChar.query.all()
+            CurrentCharacter[0].update(classname,health,attack,range==True,movement==True)
             return f"{CurrentCharacter[0].read()} Updated"
     
     # class _Security(Resource):
