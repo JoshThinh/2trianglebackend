@@ -13,6 +13,7 @@ from __init__ import app, db, cors  # Definitions initialization
 from api.user import user_api # Blueprint import api definition
 from api.chat import chat_api
 from api.player import player_api
+from api.food import food_api
 from api.friend import friend_api
 from api.CharClass import classes_api
 from api.CurrentChar import currentchar_api
@@ -20,6 +21,7 @@ from api.tbftML import tbftmodel_api
 # database migrations
 from model.users import initUsers
 from model.players import initPlayers
+from model.foods import initFoods
 from model.friends import initFriends
 from model.classes import initCharClasses
 from model.CurrentChars import initCurrentChars
@@ -36,6 +38,7 @@ db.init_app(app)
 app.register_blueprint(user_api) # register api routes
 app.register_blueprint(chat_api)
 app.register_blueprint(player_api)
+app.register_blueprint(food_api)
 app.register_blueprint(friend_api)
 app.register_blueprint(classes_api)
 app.register_blueprint(currentchar_api)
@@ -54,6 +57,10 @@ def index():
 
 @app.route('/api/players', methods=['OPTIONS'])
 def options():
+    return '', 204
+
+@app.route('/api/foods', methods=['OPTIONS'])
+def options4():
     return '', 204
 
 @app.route('/api/friends', methods=['OPTIONS'])
@@ -80,6 +87,7 @@ custom_cli = AppGroup('custom', help='Custom commands')
 def generate_data():
     initUsers()
     initPlayers()
+    initFoods()
     initFriends()
     initCharClasses()
     initCurrentChars()
