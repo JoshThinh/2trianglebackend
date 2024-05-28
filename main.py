@@ -17,7 +17,7 @@ from api.food import food_api
 from api.friend import friend_api
 from api.CharClass import classes_api
 from api.CurrentChar import currentchar_api
-from api.tbftML import tbftmodel_api
+# from api.tbftML import tbftmodel_api
 # database migrations
 from model.users import initUsers
 from model.players import initPlayers
@@ -25,7 +25,7 @@ from model.foods import initFoods
 from model.friends import initFriends
 from model.classes import initCharClasses
 from model.CurrentChars import initCurrentChars
-from model.tbftMLs import initTBFTModel
+# from model.tbftMLs import initTBFTModel
 
 # setup App pages
 from projects.projects import app_projects # Blueprint directory import projects definition
@@ -42,7 +42,7 @@ app.register_blueprint(food_api)
 app.register_blueprint(friend_api)
 app.register_blueprint(classes_api)
 app.register_blueprint(currentchar_api)
-app.register_blueprint(tbftmodel_api)
+# app.register_blueprint(tbftmodel_api)
 app.register_blueprint(app_projects) # register app pages
 
 @app.errorhandler(404)  # catch for URL not found
@@ -75,7 +75,7 @@ def table():
 def before_request():
     # Check if the request came from a specific origin
     allowed_origin = request.headers.get('Origin')
-    if allowed_origin in ['http://localhost:4700', 'http://127.0.0.1:4700', "https://ninaadkiran.github.io"]:
+    if allowed_origin in ['http://localhost:4700', 'http://127.0.0.1:4700', "https://nighthawkcoders.github.io"]:
         cors._origins = allowed_origin
 
 # Create an AppGroup for custom commands
@@ -91,7 +91,7 @@ def generate_data():
     initFriends()
     initCharClasses()
     initCurrentChars()
-    initTBFTModel()
+    # initTBFTModel()
 
 # Register the custom command group with the Flask application
 app.cli.add_command(custom_cli)
