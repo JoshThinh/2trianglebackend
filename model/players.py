@@ -88,10 +88,7 @@ class Player(db.Model):
             "tokens": self.tokens
         }
 
-    # CRUD update: updates name, uid, password, tokens
-    # returns self
     def update(self, dictionary):
-        """only updates values in dictionary with length"""
         for key in dictionary:
             if key == "name":
                 self.name = dictionary[key]
@@ -102,6 +99,22 @@ class Player(db.Model):
         db.session.commit()
         return self
 
+
+    def updateToken(self, dictionary):
+        namefound = False;
+        uidfound = False;
+        
+        for key in dictionary:
+            if key == "name":
+                if self.name == dictionary[key]:
+                    namefound = True;
+            if key == "uid":
+                self.uid = dictionary[key]
+            if key == "tokens":
+                self.tokens = dictionary[key]
+        db.session.commit()
+        return self
+    
     # CRUD delete: remove self
     # return self
     def delete(self):
